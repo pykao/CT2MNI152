@@ -14,7 +14,7 @@ import sys
 
 #ct_scan_path = '/home/pkao/CT2MNI152/example/example.nii.gz'
 
-ct_scan_path = sys.argv[1]
+ct_scan_path = str(sys.argv[1])
 
 MNI_152_bone = os.path.join(os.getcwd(),'MNI152_T1_1mm_bone.nii.gz')
 
