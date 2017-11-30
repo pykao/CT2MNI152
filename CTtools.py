@@ -11,6 +11,7 @@ import numpy as np
 from skimage.filters import threshold_otsu
 from skimage import measure
 from scipy import ndimage
+from skimage import exposure
 
 def bone_extracted(ct_img_path):
     
@@ -227,3 +228,17 @@ def removeCTscandevice(ct_img_path):
     #return output_ct_image_name, woCTscan_mask_image_name
 
     return output_ct_image_name
+
+def contrastStretch(ct_img_path, percent = (10,90)):
+	ct_img = sitk.ReadImage(ct_img_path)
+	ct_nda = sitk.GetArrayFromImage(ct_img)
+	p1, p2 = np.percentile(ct_nda, percent)
+	nda_rescale = exposure.rescale_intensity(ct_nda, in_range = (p1, p2))
+	ct_img_cs = sitk.GetImageFromArray(nda_rescale)
+	ct_img_cs.CopyInformation(ct_img)
+	output_ct_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_contrastStretch.nii.gz'
+	sitk.WriteImage(ct_img_cs, output_ct_name)
+	return output_ct_name
+
+
+
