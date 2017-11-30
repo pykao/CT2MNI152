@@ -240,7 +240,7 @@ def removeCTscandevice(ct_img_path):
 def contrastStretch(ct_img_path, percent = (10,90)):
 	ct_img = sitk.ReadImage(ct_img_path)
 	ct_nda = sitk.GetArrayFromImage(ct_img)
-	p1, p2 = np.percentile(ct_nda, percent)
+	p1, p2 = np.percentile(ct_nda, percent, interpolation='nearest')
 	nda_rescale = exposure.rescale_intensity(ct_nda, in_range = (p1, p2))
 	ct_img_cs = sitk.GetImageFromArray(nda_rescale)
 	ct_img_cs.CopyInformation(ct_img)
