@@ -20,3 +20,7 @@ $ pip install SimpleITK
 You can apply the affine transformation on a given ct scan with nifti format by 
 
 $ python CT2MNI152Affine.py <location_of_ct_scan>
+
+
+For data format converting tool, you are able to use c3d from ITK through http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.C3D
+
