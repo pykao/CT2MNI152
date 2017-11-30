@@ -58,11 +58,19 @@ def bone_extracted(ct_img_path):
     output_ct_image = sitk.GetImageFromArray(output_ct_nda)
 
     bone_mask_image = sitk.GetImageFromArray(bone_mask_nda)
+	
+    if ct_img_path.endswith('.nii.gz'):
 
-    output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skull.nii.gz'
+	output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skull.nii.gz'
 
-    bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skullMask.nii.gz'
+        bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skullMask.nii.gz'
     
+    if ct_img_path.endswith('.nii'):
+	
+	output_ct_image_name = ct_img_path[:ct_img_path.find('.nii')]+'_skull.nii'
+	
+	bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii')]+'_skullMask.nii'
+
     output_ct_image.CopyInformation(ct_img)
     
     bone_mask_image.CopyInformation(ct_img)
