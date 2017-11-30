@@ -1,6 +1,8 @@
 # CT2MNI152
 This repository implement the affine and deformation transformation in order to register the CT scan to the MNI152 1mm sapce
 
+The input CT scan MUST be in .nii.gz file format.
+
 Reference Paper: 
 
 Kuijf, Hugo J., et al. "Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping." International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
