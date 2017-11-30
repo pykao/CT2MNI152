@@ -16,3 +16,7 @@ $ sudo apt-get install elastix
 3. You have to install SimpleITK package in python
 
 $ pip install SimpleITK
+
+You can apply the affine transformation on a given ct scan with nifti format by 
+
+$ python CT2MNI152Affine.py <location_of_ct_scan>
