@@ -24,7 +24,7 @@ def bone_extracted(ct_img_path):
 
     output_ct_img = sitk.Image(ct_img.GetWidth(), ct_img.GetHeight(), ct_img.GetDepth(), sitk.sitkFloat32)
 
-    #print 'The size of CT scan:', ct_img.GetSize()
+    print 'The size of CT scan:', ct_img.GetSize()
 
     ct_nda = sitk.GetArrayFromImage(ct_img)
 
@@ -57,33 +57,29 @@ def bone_extracted(ct_img_path):
 
     output_ct_image = sitk.GetImageFromArray(output_ct_nda)
 
-    bone_mask_image = sitk.GetImageFromArray(bone_mask_nda)
-	
-    if ct_img_path.endswith('.nii.gz'):
-
-	output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skull.nii.gz'
-
-        bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skullMask.nii.gz'
     
-    if ct_img_path.endswith('.nii'):
-	
-	output_ct_image_name = ct_img_path[:ct_img_path.find('.nii')]+'_skull.nii'
-	
-	bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii')]+'_skullMask.nii'
 
+    output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skull.nii.gz'
+    
+    print 'The name of the output skull image: ', output_ct_image_name
+    
     output_ct_image.CopyInformation(ct_img)
     
-    bone_mask_image.CopyInformation(ct_img)
+    sitk.WriteImage(output_ct_image, output_ct_image_name)
+    
+    return output_ct_image_name   
 
-    #print 'The name of the output skull image: ', output_ct_image_name
+    # bone_mask 
+    #bone_mask_image = sitk.GetImageFromArray(bone_mask_nda)
+
+    #bone_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_skullMask.nii.gz'
+    
+    # bone_mask_image.CopyInformation(ct_img)
 
     #print 'The name of the output skull mask image: ', bone_mask_image_name
 
-    sitk.WriteImage(output_ct_image, output_ct_image_name)
-
     #sitk.WriteImage(bone_mask_image, bone_mask_image_name)
 
-    return output_ct_image_name
     #return output_ct_image_name, bone_mask_image_name
 
 def getMaximum3DRegion(binary):
@@ -198,8 +194,7 @@ def removeCTscandevice(ct_img_path):
     #print 'The maximum value of CT scan: ', np.amax(ct_nda)
 
     #print 'The pixel ID type of CT scan: ', ct_img.GetPixelIDTypeAsString()
-    
-   
+     
     ct_normalized_nda = normalizeCTscan(ct_nda)
     
     binary = otsuThreshoulding(ct_normalized_nda)
@@ -216,26 +211,30 @@ def removeCTscandevice(ct_img_path):
     
     new_max_binary = getMaximum3DRegion(new_max_second_bindary)
     
-    woCTscan_mask_image = sitk.GetImageFromArray(new_max_binary)
-    
-    woCTscan_mask_image.CopyInformation(ct_img)
-    
-    woCTscan_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_woCTscanMask.nii.gz'
-    
     output_ct_image = sitk.GetImageFromArray(ct_nda * new_max_binary)
     
     output_ct_image.CopyInformation(ct_img)
     
-    output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_woCTscan.nii.gz'
+    output_ct_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_woCTdevice.nii.gz'
+    
+    sitk.WriteImage(output_ct_image, output_ct_image_name)        
     
     
-    #sitk.WriteImage(woCTscan_mask_image, woCTscan_mask_image_name)
-    
-    sitk.WriteImage(output_ct_image, output_ct_image_name)
-    
-    #return output_ct_image_name, woCTscan_mask_image_name
-
     return output_ct_image_name
+
+    # The mask for CT device
+    
+    #woCTdevice_mask_image = sitk.GetImageFromArray(new_max_binary)
+    
+    #woCTdevice_mask_image.CopyInformation(ct_img)
+    
+    #woCTdevice_mask_image_name = ct_img_path[:ct_img_path.find('.nii.gz')]+'_woCTdeviceMask.nii.gz'
+     
+    #sitk.WriteImage(woCTdevice_mask_image, woCTdevice_mask_image_name)
+       
+    #return output_ct_image_name, woCTdevice_mask_image_name
+
+
 
 def contrastStretch(ct_img_path, percent = (10,90)):
 	ct_img = sitk.ReadImage(ct_img_path)
