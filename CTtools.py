@@ -14,6 +14,7 @@ from scipy import ndimage
 from skimage import exposure
 
 def bone_extracted(ct_img_path):
+	"""Extract the bone of the CT scan based on the hard thresholding on pixel value"""
     
     print 'The CT scan you want to implement bone extraction: ', ct_img_path
 
@@ -83,6 +84,7 @@ def bone_extracted(ct_img_path):
     #return output_ct_image_name, bone_mask_image_name
 
 def getMaximum3DRegion(binary):
+	""" Get the Maximum 3D region from 3D multiple bindary Regions"""
     
     all_labels = measure.label(binary, background = 0)
     
@@ -100,7 +102,7 @@ def getMaximum3DRegion(binary):
    
 
 def normalizeCTscan(ct_nda):
-    
+    """Normalize the CT scan to range 0 to 1"""
     if np.amin(ct_nda) < 0:
         ct_normalized_nda = ct_nda - np.amin(ct_nda)
         
@@ -110,6 +112,7 @@ def normalizeCTscan(ct_nda):
 
 
 def otsuThreshoulding(ct_normalized_nda):
+	"""Apply Otsu thresholding on the normalized ranging from 0 to 1 scan"""
     
     thresh = threshold_otsu(ct_normalized_nda)
     
@@ -118,6 +121,7 @@ def otsuThreshoulding(ct_normalized_nda):
     return binary.astype(np.float32)
     
 def get2Maximum2DRegions(max_binary):
+	"""Get two largestest 2D region from multiple 2D regions"""
     
     xy_two_largest_binary = np.zeros(max_binary.shape, dtype = np.float32 )
     
@@ -154,6 +158,7 @@ def get2Maximum2DRegions(max_binary):
     return xy_two_largest_binary
 
 def get1Maximum2DRegion(max_second_binary):
+	"""Get the largest 2D region from multiple 2D regions"""
     
     new_binary = np.zeros(max_second_binary.shape, dtype = np.float32)
     for i in range(max_second_binary.shape[0]):
@@ -172,7 +177,7 @@ def get1Maximum2DRegion(max_second_binary):
 
 
 def imageOpening2D(max_second_binary, structure=np.ones((15, 15))):
-    
+    """Applying the image opening operation on the binary mask"""
     new_max_second_binary = np.zeros(max_second_binary.shape, dtype = np.float32)
     
     for i in range(max_second_binary.shape[0]):
@@ -182,6 +187,7 @@ def imageOpening2D(max_second_binary, structure=np.ones((15, 15))):
     return new_max_second_binary
 
 def removeCTscandevice(ct_img_path):
+	"""remove the ct scan device"""
 
     ct_img = sitk.ReadImage(ct_img_path)
     
@@ -237,6 +243,7 @@ def removeCTscandevice(ct_img_path):
 
 
 def contrastStretch(ct_img_path, percent = (10,90)):
+	"""Apply the contrast stretching on 2D or 3D image"""
 	ct_img = sitk.ReadImage(ct_img_path)
 	ct_nda = sitk.GetArrayFromImage(ct_img)
 	p1, p2 = np.percentile(ct_nda, percent, interpolation='nearest')
