@@ -3,7 +3,7 @@ This repository implement the affine and deformation transformation in order to 
 
 The input CT scan MUST be in .nii.gz file format.
 
-Reference Paper: 
+[Reference Paper](https://link.springer.com/content/pdf/10.1007%2F978-3-319-02126-3_12.pdf): 
 
 Kuijf, Hugo J., et al. "Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping." International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
 
