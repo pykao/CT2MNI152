@@ -4,6 +4,10 @@ This repository implement the affine and deformation transformation in order to 
 
 The input CT scan MUST be in .nii.gz file format.
 
+- For data format converting tool, you are able to use [c3d](http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.C3D) from ITK
+
+- For converting DICOM to NIFTI, you are able to use [dcm2nii](http://www.cabiatl.com/mricro/mricron/dcm2nii.html)
+
 Reference Paper: 
 
 Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping.](https://link.springer.com/content/pdf/10.1007%2F978-3-319-02126-3_12.pdf)" International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
@@ -26,10 +30,6 @@ $ pip install SimpleITK
 ```
 $ python CT2MNI152Affine.py <location_of_ct_scan>
 ```
-
-- For data format converting tool, you are able to use [c3d](http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.C3D) from ITK
-
-- For converting DICOM to NIFTI, you are able to use [dcm2nii](http://www.cabiatl.com/mricro/mricron/dcm2nii.html)
 
 # LICENSE
 
