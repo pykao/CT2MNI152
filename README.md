@@ -1,6 +1,6 @@
 # CT2MNI152 
 
-This repository implement the affine and deformation transformation in order to register the CT scan to the MNI152 1mm sapce
+This repository implement the affine and deformation transformation in order to register the CT scan to the MNI152 1mm space
 
 The input CT scan MUST be in .nii.gz file format.
 
@@ -8,9 +8,11 @@ The input CT scan MUST be in .nii.gz file format.
 
 - For converting DICOM to NIFTI, you are able to use [dcm2nii](http://www.cabiatl.com/mricro/mricron/dcm2nii.html)
 
-Reference Paper: 
+- You can also use [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php) to covert a series of DICOM scans to a single .nii.gz scan
 
-Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping.](https://link.springer.com/content/pdf/10.1007%2F978-3-319-02126-3_12.pdf)" International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
+## Dependencies
+
+Python 2.7
 
 ## 1. You have to install [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) in your local machine. 
 
@@ -30,6 +32,10 @@ $ pip install SimpleITK
 ```
 $ python CT2MNI152Affine.py <location_of_ct_scan>
 ```
+
+## Reference Paper: 
+
+Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping.](https://link.springer.com/content/pdf/10.1007%2F978-3-319-02126-3_12.pdf)" International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
 
 # LICENSE
 
