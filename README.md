@@ -41,6 +41,7 @@ Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for 
 
 ## How to cite this reposisoty
 
+```
 @misc{kao2019ct,
     author       = {Po-Yu Kao},
     title        = {{CT2MNI152: First release of the CT to MNI 152 space registration tool}},
@@ -51,6 +52,7 @@ Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for 
     publisher    = {Zenodo},
     url          = {https://doi.org/10.5281/zenodo.3572912}
     }
+```
 
 # LICENSE
 
