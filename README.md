@@ -10,6 +10,8 @@ The input CT scan MUST be in .nii.gz file format.
 
 - You can also use [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php) to covert a series of DICOM scans to a single .nii.gz scan
 
+- Please cite the following reference paper and this repository if it helps your research. 
+
 ## Dependencies
 
 Python 2.7
@@ -33,9 +35,22 @@ $ pip install SimpleITK
 $ python CT2MNI152Affine.py <location_of_ct_scan>
 ```
 
-## Reference Paper: 
+## Reference paper: 
 
 Kuijf, Hugo J., et al. "[Registration of brain CT images to an MRI template for the purpose of lesion-symptom mapping.](https://link.springer.com/content/pdf/10.1007%2F978-3-319-02126-3_12.pdf)" International Workshop on Multimodal Brain Image Analysis. Springer, Cham, 2013.
+
+## How to cite this reposisoty
+
+@misc{kao2019ct,
+    author       = {Po-Yu Kao},
+    title        = {{CT2MNI152: First release of the CT to MNI 152 space registration tool}},
+    month        = December,
+    year         = 2019,
+    doi          = {10.5281/zenodo.3572912},
+    version      = {1.0.0},
+    publisher    = {Zenodo},
+    url          = {https://doi.org/10.5281/zenodo.3572912}
+    }
 
 # LICENSE
 
